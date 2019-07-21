@@ -16,7 +16,7 @@
 	"background": {
   	"scripts": ["background.js"]
 	},
-	"page_action" : {
-		
-	}
+	"permissions": [
+		"tabs"
+	]
 }
