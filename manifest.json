@@ -10,6 +10,7 @@
 			"js": ["jquery-3.4.1.min.js", "content.js"]
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
   ],
   "browser_action": {
   	"default_icon": "icon.png"
@@ -20,6 +21,9 @@
 	"permissions": [
 		"tabs"
 	]
+=======
+  ]
+>>>>>>> parent of 754bfeb... Added background script
 =======
   ]
 >>>>>>> parent of 754bfeb... Added background script
