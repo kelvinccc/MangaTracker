@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //var firstHref = $("a[href^='http']").eq(0).attr("href");
 //console.log(firstHref);
 //alert(document.title);
@@ -21,3 +22,7 @@ chrome.runtime.onMessage.addListener(
     if (request.greeting == "hello")
       sendResponse({farewell: "goodbye"});
   });
+=======
+var firstHref = $("a[href^='http']").eq(0).attr("href");
+console.log(firstHref);
+>>>>>>> parent of 754bfeb... Added background script
