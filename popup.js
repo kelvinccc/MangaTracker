@@ -48,6 +48,9 @@ clear.onclick = function() { // clears all stored information
 
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {type: "getHref"}, function(href) {
-        $( "#pic" ).load( href + " div.manga-info-pic img" );
+        console.log(href.chapter);
+        $( "#pic" ).load( href.href + " div.manga-info-pic img" );
+        $("#title").text(href.manga);
+        $("#chapter").text(href.chapter);
     });
 });
