@@ -5,6 +5,9 @@
 $(function() {
   var title = $('title')[0].innerText;
   var url = $(location).attr('href');
+  var manga = $('[itemprop="title"]');
+  console.log($('[itemprop="url"]')[1].href);
+  console.log(manga[1].innerText);
   console.log(title);
   console.log(url);
   console.log(window.location.host); // can also use hostname
@@ -37,3 +40,15 @@ chrome.runtime.onMessage.addListener(
     }
   }
 ); 
+
+chrome.runtime.onMessage.addListener(
+  function(message, sender, sendResponse) {
+      switch(message.type) {
+          case "getHref":
+              sendResponse($('[itemprop="url"]')[1].href);
+              break;
+          default:
+              console.error("Unrecognised message: ", message);
+      }
+  }
+);

@@ -7,17 +7,11 @@ let save = document.getElementById('save');
 let clear = document.getElementById('clear');
 
 window.onload = function() {
-
-    loadLinks();
-}
-
-// shows nipple
-button.onclick = function() {
-    nipple.style.display = "inline";
 }
 
 // saves URL to storage and adds to display lits
 save.onclick = function() {
+    $( "#pic" ).load( "https://manganelo.com/manga/kxqh9261558062112 div.manga-info-pic img" );
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         let url = tabs[0].url;
         chrome.storage.sync.set({[url]: url}, function() { // stores web page on load
@@ -27,15 +21,6 @@ save.onclick = function() {
     });
 }
 
-// loads all keys and makes them links
-function loadLinks() {
-    chrome.storage.sync.get(null, function(items) {
-        let keys = Object.keys(items);
-        keys.forEach(function(key) {
-            makeLink(key);
-        });
-    });
-}
 
 // takes key and makes link and adds to list
 function makeLink(key) {
@@ -60,3 +45,9 @@ clear.onclick = function() { // clears all stored information
         }
     });
 }
+
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {type: "getHref"}, function(href) {
+        $( "#pic" ).load( href + " div.manga-info-pic img" );
+    });
+});
