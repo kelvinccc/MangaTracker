@@ -7,11 +7,11 @@
          "comments": "Title in url path could be id number sometimes"
       },
 	
-      {
-         "id":"07",
-         "language": "C++",
-         "edition": "second",
-         "author": "E.Balagurusamy"
+      "mangafox.online": {
+         "url":"https://ww2.mangafox.online/",
+         "titleFormat": "TITLE Chapter NUMBER: SUBTITLE",
+         "chapterPath": "/TITLE/vol-1-chapter-NUMBER-flying-bastard-93647633090569",
+         "comments": "Title in url path could be id number sometimes"
       }
    ]
 }
