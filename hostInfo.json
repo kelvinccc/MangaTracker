@@ -1,17 +1,9 @@
 {
    "hosts": [
-      "manganelo.com": {
+      "manganelo.com" : {
          "url":"https://manganelo.com/",
-         "titleFormat": "TITLE Chapter NUMBER Online For Free - MangaNelo.com",
-         "chapterPath": "/chapter/TITLE/chapter_NUMBER",
-         "comments": "Title in url path could be id number sometimes"
-      },
-	
-      "mangafox.online": {
-         "url":"https://ww2.mangafox.online/",
-         "titleFormat": "TITLE Chapter NUMBER: SUBTITLE",
-         "chapterPath": "/TITLE/vol-1-chapter-NUMBER-flying-bastard-93647633090569",
-         "comments": "Title in url path could be id number sometimes"
+         "titleFormat": ".+?(?= Chapter \\d+ )",
+         "chapterPath": "(?<= Chapter ).\\d+",
       }
    ]
 }

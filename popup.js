@@ -7,6 +7,7 @@ let save = document.getElementById('save');
 let clear = document.getElementById('clear');
 
 window.onload = function() {
+
     loadLinks();
 }
 
