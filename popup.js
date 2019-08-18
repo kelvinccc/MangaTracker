@@ -9,7 +9,7 @@ let clear = document.getElementById('clear');
 window.onload = function() {
 }
 
-// saves URL to storage and adds to display lits
+/*// saves URL to storage and adds to display lits
 save.onclick = function() {
     $( "#pic" ).load( "https://manganelo.com/manga/kxqh9261558062112 div.manga-info-pic img" );
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
@@ -19,7 +19,7 @@ save.onclick = function() {
             makeLink(url);
         });
     });
-}
+}*/
 
 $("#library").click(function() {
     console.log('hello');
@@ -55,6 +55,9 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {type: "getHref"}, function(href) {
          console.log(href.chapter);
         $( "#pic" ).load( href.href + " div.manga-info-pic img" );
+        $("#pic").click(function() {
+            chrome.tabs.create({ url: href.href });
+        });
         $("#title").text(href.manga);
         $("#chapter").text(href.chapter);
     });

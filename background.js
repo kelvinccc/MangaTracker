@@ -22,7 +22,7 @@ chrome.runtime.onInstalled.addListener(function() {
       });
 
       //Set up empty manga array
-      chrome.storage.sync.set({'manga' : []}, function() {});
+      chrome.storage.sync.set({'manga' : {}}, function() {});
     }
   });
 });
