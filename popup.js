@@ -21,6 +21,11 @@ save.onclick = function() {
     });
 }
 
+$("#library").click(function() {
+    console.log('hello');
+    chrome.tabs.create({ url: chrome.runtime.getURL("mangaLibrary.html") });
+});
+
 
 // takes key and makes link and adds to list
 function makeLink(key) {
@@ -31,7 +36,7 @@ function makeLink(key) {
     node.appendChild(link);
     document.getElementById("links").appendChild(node);
 }
-
+/*
 // clears all stored info
 clear.onclick = function() { // clears all stored information
     chrome.storage.sync.clear(function() {
@@ -44,11 +49,11 @@ clear.onclick = function() { // clears all stored information
             myNode.removeChild(myNode.firstChild);
         }
     });
-}
+}*/
 
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {type: "getHref"}, function(href) {
-        console.log(href.chapter);
+         console.log(href.chapter);
         $( "#pic" ).load( href.href + " div.manga-info-pic img" );
         $("#title").text(href.manga);
         $("#chapter").text(href.chapter);
