@@ -6,6 +6,7 @@ chrome.runtime.onInstalled.addListener(function() {
   //chrome.storage.sync.clear(function() {}); for testing
   chrome.storage.sync.get("structInit", function(bool) { // stores web page on load
     if (bool != true) {
+      chrome.storage.sync.clear(fn => {});
       // Set flag to indicate that initial structure is set.
       chrome.storage.sync.set({'structInit' : true}, function() {
         console.log("First initialization complete")
