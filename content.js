@@ -2,7 +2,7 @@
 $(document).ready(function() {
   //console.log('host : ' + window.location.host); // can also use hostname
   //console.log('pathname : ' + window.location.pathname);
-
+  console.log("running");
   structInit();
 
   // Grab different parameters from DOM

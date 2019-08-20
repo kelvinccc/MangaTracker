@@ -8,28 +8,43 @@ chrome.storage.sync.get("manga", function(callback){
     //console.log('hi');
 
     //add each img of each manga into array manga
+    var i = 0;
     mangaKeys = Object.keys(mangas);
     for (var m in mangas) {
-    	console.log(mangas[m]);
+    	console.log(m);
     	manga.push(mangas[m]);
+		(function(index, name) {
+			var len = manga[i].chapters.length;
+			var arr = manga[i].chapters.sort();
+			$("#manga").append(('<figure id ="pic' + i + '" class = "col-sm figure"></figure>'));
+			$('#pic' + i).load(manga[i].img, function() {
+			//$(this).clone().appendTo("#manga").remove();
+				$('<figcaption class="figure-caption">' + name + " : " + arr[len - 1] + '</figcaption>').appendTo(this);
+			});
+		})(i, m);
+		i++;
 	}
 
-    
+
+	/*for (i = 0; i < manga.length; i++) {
+		(function(index) {
+			var len = manga[i].chapters.length;
+			var arr = manga[i].chapters.sort();
+			$("#manga").append(('<figure id ="pic' + i + '" class = "col-sm figure"></figure>'));
+			$('#pic' + i).load(manga[i].img, function() {
+			//$(this).clone().appendTo("#manga").remove();
+				$('<figcaption class="figure-caption">' + mangaKeys[i] + " : " + arr[len - 1] + '</figcaption>').appendTo(this);
+			});
+		})(i);
+	}*/
 });
 
 // display each manga onto the screen
-$(function() {
+function runImages() {
 	//$('img').load("https://manganelo.com/manga/read_one_piece_manga_online_free4 div.manga-info-pic img");
 
-	for (i = 0; i < manga.length; i++) {
-		$("#manga").append(('<div id ="pic' + i + '"></div>'));
-		var len = manga[i].chapters.length;
-		var arr = manga[i].chapters.sort();
-		$("#manga").append('<p>' + mangaKeys[i] + " : " + manga[i].chapters[len - 1] + '</p>');
-		$('#pic' + i).load(manga[i].img);
 
-		$("#manga" + i).text(manga[i].chapters[len - 1]);
-	}
+
 
 	/*var $image = $("img").first();
 	var $downloadingImage = $("<img>");
@@ -37,10 +52,4 @@ $(function() {
   		$image.attr("src", $(this).attr("src"));	
 	});
 	$downloadingImage.attr("src", "http://an.image/to/aynchrounously/download.jpg");*/
-});
-
-function loadImage(path, target) {
-    $(path).load(function() {
-      $(this).appendTo(target);
-    });
 }
