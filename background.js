@@ -1,5 +1,19 @@
 // background.js
 
+/*
+url structure is for if we potentially want to support more domains in the future. Right now we only support manganelo
+We currently don't even use this structure actually...
+URL STRUCTURE:
+{
+   "hosts": [
+      "manganelo.com" : {
+         "url":"https://manganelo.com/",           --the url
+         "titleFormat": ".+?(?= Chapter \\d+ )",
+         "chapterPath": "(?<= Chapter ).\\d+",
+      }
+   ]
+}
+*/
 
 // Set up initial JSON state
 chrome.runtime.onInstalled.addListener(function() {
@@ -21,7 +35,7 @@ chrome.runtime.onInstalled.addListener(function() {
         "chapterPath": "(?<= Chapter )\\d+"
       };
       chrome.storage.sync.set({'manganelo.com' : urlJson}, function() {
-        //allow send to popup different host pages available in build
+        //POSSIBLE ADDITION: allow send to popup different host pages available in build
       });
 
       //Set up empty manga array
@@ -30,7 +44,7 @@ chrome.runtime.onInstalled.addListener(function() {
   });
 });
 
-// Called when the user clicks on the browser action.
+// Called when the user clicks on the browser action. (the icon)
 chrome.browserAction.onClicked.addListener(function(tab) {
   // Send a message to the active tab
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {

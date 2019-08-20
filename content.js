@@ -57,9 +57,7 @@ function checkChapterExist(href, manga) {
         //console.log(manga);
         console.log('added ' + manga + ' to library');
       });
-      console.log('3');
     } else {
-      console.log('4');
       var chapterIndex = obj.manga[manga].chapters.indexOf(chapter); //idexOf returns -1 if not found
 
       //if din't previously read this chapter, record it in JSON
@@ -75,33 +73,9 @@ function checkChapterExist(href, manga) {
       }
 
     }
-console.log('5');
-    /*
-  var hostInfo = url["manganelo.com"];
-  var titleForm = hostInfo["titleFormat"];
-  // chapter num regex = (?<=\/chapter_).*$
-  //console.log(hostInfo);
-  //console.log(titleForm);
-  //console.log(chapter);
-  var OP = new RegExp(titleForm);
-  var chap = new RegExp(hostInfo.chapterPath);
-  chapter = title.match(chap)[0];
-  console.log(title.match(OP)[0]);
-  console.log("Chapter : " + title.match(chap)[0]);
-  */
 });
 }
 
-/*
-// content.js
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if( request.message === "clicked_browser_action" ) {
-      var firstHref = $("a[href^='http']").eq(0).attr("href");
-      console.log(firstHref);
-    }
-  }
-); */
 
 //var chapter;
 /*chrome.storage.sync.get("manganelo.com", function(url) { // stores web page on load
@@ -112,9 +86,11 @@ chrome.runtime.onMessage.addListener(
   console.log("Chapter : " + title.match(chap)[0]);
 });*/
 
+
 chrome.runtime.onMessage.addListener(
   function(message, sender, sendResponse) {
       switch(message.type) {
+          //when popup is clicked, send information to popup
           case "getHref":
               sendResponse({"href" : $('[itemprop="url"]')[1].href, "chapter" : chapter, "manga" : $('[itemprop="title"]')[1].innerText});
               break;

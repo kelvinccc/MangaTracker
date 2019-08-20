@@ -8,7 +8,7 @@ chrome.storage.sync.get("manga", function(callback){
     console.log(mangas);
     //console.log('hi');
 
-
+    //add each img of each manga into array manga
     for (var m in mangas) {
     	console.log(mangas[m].img);
     	manga.push(mangas[m].img);
@@ -18,6 +18,7 @@ chrome.storage.sync.get("manga", function(callback){
     
 });
 
+// display each manga onto the screen
 $(function() {
 	manga.forEach(function(m) {
 		console.log(m);
