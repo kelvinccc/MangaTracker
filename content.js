@@ -65,8 +65,7 @@ function checkChapterExist(href, manga) {
       //if din't previously read this chapter, record it in JSON
       if (chapterIndex == -1) {
         console.log(obj.manga[manga].chapters);
-        console.log(obj.manga[manga].chapters.push(chapter).sort());
-        console.log(obj.manga[manga].chapters);
+        console.log(obj.manga[manga].chapters.push(chapter));
         chrome.storage.sync.set({'manga' : obj.manga}, function() {
           //allow send to popup different host pages available in build
           //console.log(manga);
