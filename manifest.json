@@ -5,7 +5,7 @@
   "content_scripts": [
 		{
 			"matches": ["*://manganelo.com/*"],
-			"js": ["jquery-3.4.1.min.js", "content.js", "popup.js"]
+			"js": ["jquery-3.4.1.min.js", "content.js", "popup.js", "mangaLibrary.js"]
 		}
   ],
   "browser_action": {

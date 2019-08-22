@@ -13,15 +13,32 @@ chrome.storage.sync.get("manga", function(callback){
     for (var m in mangas) {
     	console.log(m);
     	manga.push(mangas[m]);
-		(function(index, name) {
-			var len = manga[i].chapters.length;
-			var arr = manga[i].chapters.sort();
-			$("#manga").append(('<figure id ="pic' + i + '" class = "col-sm figure"></figure>'));
-			$('#pic' + i).load(manga[i].img, function() {
+		(function(index, name, url) {
+			var len = manga[index].chapters.length;
+			var arr = manga[index].chapters.sort();
+			//$("#manga").append(('<figure id ="pic' + index + '" class = "col-sm figure"></figure>'));
+			$("#manga").append(('<div id ="pic' + index + '" class = "col-4 hovereffect"></div>'));
+			$('#pic' + index).load(manga[index].img, function(responseText, textStatus, XMLHttpRequest) {
 			//$(this).clone().appendTo("#manga").remove();
-				$('<figcaption class="figure-caption">' + name + " : " + arr[len - 1] + '</figcaption>').appendTo(this);
+			if (textStatus == "success") {
+				$('#pic' + index + ' img').addClass("img-responsive");
+				$('#pic' + index).append('<div class="overlay">' +
+											  '<h2>' + name + " : " + arr[len -1] + '</h2>' + 
+										      '<a class="info" href="' + manga[index].url + arr[len - 1] + '"> Click to read </a>' +
+										 ' </div>');
+				//$('#pic' + index).append('<figcaption id="fig' + index + '" class="figure-caption">' + name + " : " + arr[len - 1] + '</figcaption>');
+				/*$('#pic' + index).on("click", function(e){
+					console.log(manga[index].url + arr[len - 1]);
+	        		chrome.tabs.create({ url: manga[index].url + arr[len - 1] });
+	      		});*/
+			}
+		    /*$("#fig" + i).click(function() {
+		    	console.log(url + arr[len - 1]);
+    			//chrome.tabs.create({ url: url + arr[len - 1] });
 			});
-		})(i, m);
+			console.log(url + arr[len - 1]);*/
+			});
+		})(i, m, mangas);
 		i++;
 	}
 
